@@ -15,6 +15,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>4.12</junit.version>
+    <mode>DEV</mode>
   </properties>
 
   <dependencies>
@@ -101,5 +102,31 @@
       </plugins>
     </pluginManagement>
     <finalName>${project.artifactId}</finalName>
+    <!-- Activation du remplacement des variables via Maven -->
+    <resources>
+    	<resource>
+    		<directory>src/main/resources</directory>
+    		<filtering>true</filtering>
+    	</resource>
+    </resources>
   </build>
+  
+  <profiles>
+  	<profile>
+  		<id>dev</id>
+  		<activation>
+  			<activeByDefault>true</activeByDefault>
+  		</activation>
+  		<properties>
+  			<mode>DEV</mode>
+  		</properties>
+  	</profile>
+  	<profile>
+  		<id>prod</id>
+  		<properties>
+  			<mode>PRO</mode>
+  		</properties>
+  	</profile>
+  </profiles>
+  
 </project>
